@@ -22,15 +22,18 @@ namespace S3{
 	  		transform.Translate(0,0,z);
 
 	  		if(Input.GetKeyDown(KeyCode.Space)){
-	  			Fire();
+	  			CmdFire();
 	  		}
 	    }
-
-	    void Fire(){
+	    [Command]
+	    void CmdFire(){
 	    	//create  the bullet from prefab
 	    	GameObject bullet = (GameObject)Instantiate(bulletPrefab,bulletSpawn.position,bulletSpawn.rotation);
 	    	//velocity of bullet
-	    	bullet.GetComponent<Rigidbody>().velocity=bullet.transform.forward*17.0f;
+	    	bullet.GetComponent<Rigidbody>().velocity=bullet.transform.forward*18.0f;
+	    	//spawn bullet
+	    	NetworkServer.Spawn(bullet);
+
 	    	//destroy bullet in 20 sec
 	    	Destroy(bullet,20);
 
