@@ -5,6 +5,8 @@ using UnityEngine.Networking;
 namespace S3{
 	public class PlayerController:NetworkBehaviour
 	{
+		public GameObject bulletPrefab;
+		public Transform bulletSpawn;
 	  	
 	    // Update is called once per frame
 	    void Update()
@@ -18,6 +20,19 @@ namespace S3{
 
 	  		transform.Rotate(0,x,0);
 	  		transform.Translate(0,0,z);
+
+	  		if(Input.GetKeyDown(KeyCode.Space)){
+	  			Fire();
+	  		}
+	    }
+
+	    void Fire(){
+	    	//create  the bullet from prefab
+	    	GameObject bullet = (GameObject)Instantiate(bulletPrefab,bulletSpawn.position,bulletSpawn.rotation);
+	    	//velocity of bullet
+	    	bullet.GetComponent<Rigidbody>().velocity=bullet.transform.forward*17.0f;
+	    	//destroy bullet in 20 sec
+	    	Destroy(bullet,20);
 
 	    }
 	}
