@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using UnityEngine.UI;
 using UnityEngine.Networking;
 
 namespace S3{
@@ -7,7 +8,13 @@ namespace S3{
 	{
 		public GameObject bulletPrefab;
 		public Transform bulletSpawn;
+		public Text countText;
+		private int count;
 	  	
+	  	void Start(){
+	  		count=0;
+	  		SetCountText();
+	  	}
 	    // Update is called once per frame
 	    void Update()
 	    {
@@ -24,6 +31,17 @@ namespace S3{
 	  		if(Input.GetKeyDown(KeyCode.Space)){
 	  			CmdFire();
 	  		}
+	    }
+	    void OnTriggerEnter(Collider other){
+	    	if(other.gameObject.CompareTag("Pick Up")){
+	    		other.gameObject.SetActive(false);
+	    		count=count+1;
+	    		SetCountText();
+	    	}
+
+	    }
+	    void SetCountText(){
+	    	countText.text="Coins:"+ count.ToString();
 	    }
 	    [Command]
 	    void CmdFire(){
