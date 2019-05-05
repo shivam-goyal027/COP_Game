@@ -1,13 +1,20 @@
-﻿using System.Collections;
+using System.Collections;
 using UnityEngine;
 
 namespace S3{
 	public class Bullet : MonoBehaviour
 	{
 	    // Update is called once per frame
-	    void OnCollisionEnter()
+	    void OnCollisionEnter(Collision collision)
 	    {
-	        Destroy(gameObject);
+	    	GameObject hit = collision.gameObject;
+	    	//Health health = hit.GetComponent<Health>();
+	    	//if(health!=null){
+	    	//	health.TakeDamage(10);
+	    	//}
+	    	if(hit.CompareTag("enemies")){
+	        Destroy(hit);
+	    	}
 	    }
 	}
 }
