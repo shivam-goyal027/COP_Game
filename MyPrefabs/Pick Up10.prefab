@@ -168,10 +168,10 @@ GameObject:
   - component: {fileID: 4371050635129564442}
   m_Layer: 0
   m_Name: TextMeshPro
-  m_TagString: Untagged
+  m_TagString: textmesh
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
+  m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!224 &7043833206358098149
 RectTransform:
